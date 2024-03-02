@@ -1,5 +1,6 @@
 CXX=g++
 CXXFLAGS=-g -Wall -std=c++11
+CXXFLAGS += -I..
 
 OBJS=wire.o gate.o circuit.o logicsim.o
 
