@@ -78,18 +78,25 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    // -----------------------------------------------
-    // Feel free to update any code below this point
-    // -----------------------------------------------
     Node* head = readList(argv[1]);
     cout << "Original list: ";
     print(head);
 
-    // Test out your linked list code
+    Node* smaller = nullptr;
+    Node* larger = nullptr;
+    int pivot = 10; // Set the pivot value
 
+    llpivot(head, smaller, larger, pivot);
 
+    cout << "Smaller list: ";
+    print(smaller);
 
-    
+    cout << "Larger list: ";
+    print(larger);
+
+    // Deallocate the lists
+    dealloc(smaller);
+    dealloc(larger);
+
     return 0;
-
 }

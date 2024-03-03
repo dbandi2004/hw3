@@ -47,7 +47,8 @@ struct Node
  *   Pivot value
  *
  */
-void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot);
+void llpivot(Node*& head, Node*& smaller, Node*& larger, int pivot);
+
 
 /**
  * Given a linked list pointed to by head, removes (filters out) nodes
@@ -71,20 +72,32 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot);
  */
 template <typename Comp>
 Node* llfilter(Node* head, Comp pred);
-
 //*****************************************************************************
 // Since template implementations should be in a header file, we will
 // implement the above function now.
 //*****************************************************************************
 
 template <typename Comp>
-Node* llfilter(Node* head, Comp pred)
-{
-    //*********************************************
-    // Provide your implementation below
-    //*********************************************
+Node* llfilter(Node* head, Comp pred) {
+    // Base case: if head is nullptr, return nullptr
+    if (head == nullptr) {
+        return nullptr;
+    }
 
+    // Recurse to the next node first
+    head->next = llfilter(head->next, pred);
 
+    // Now decide what to do with the current node
+    if (pred(head->val)) {
+        // If the current node should be removed, delete it and return the next node
+        Node* next = head->next;
+        delete head;
+        return next;
+    } else {
+        // If the current node should not be removed, just return it
+        return head;
+    }
 }
+
 
 #endif
